@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Apple
+  - Basket
   layers:
   - Default
   - TransparentFX
@@ -12,11 +13,11 @@ TagManager:
   - 
   - Water
   - UI
+  - Basket
   - AppleTree
   - Apple
-  - Basket
-  - 
-  - 
+  - Shadow
+  - Ground
   - 
   - 
   - 
@@ -39,6 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 1576326497
+    locked: 0
+  - name: Shadow
+    uniqueID: 1399212691
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
