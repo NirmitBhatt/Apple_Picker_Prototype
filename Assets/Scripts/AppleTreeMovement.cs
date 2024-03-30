@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
-public class AppleTree : MonoBehaviour
+public class AppleTreeMovement : MonoBehaviour
 {
-    public GameObject applePrefab;
     public float speed = 1f;
     public float leftScreenEdge = -10f;
     public float rightScreenEdge = 10f;
     public float chanceToChangeDirections = 0.0001f;
-    public float secsBetweenAppleDrop = 1f;
     Vector3 pos;
-    // Start is called before the first frame update
     void Start()
     {
         pos = transform.position;
-        InvokeRepeating("InstantiateAppleDrop", 1f, secsBetweenAppleDrop);
     }
 
     // Update is called once per frame
@@ -27,18 +22,18 @@ public class AppleTree : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Random.value < chanceToChangeDirections)
-        {
-            speed *= -1;
-        }
+        ChangeTreeDirectionRandomly();
+        
     }
-    public void MoveAppleTree()
+
+
+    private void MoveAppleTree()
     {
         pos.x += speed * Time.deltaTime;
         transform.position = pos;
-        ChangeTreeDirection();       
+        ChangeTreeDirection();
     }
-    public void ChangeTreeDirection()
+    private void ChangeTreeDirection()
     {
         if (pos.x < leftScreenEdge)
         {
@@ -49,8 +44,12 @@ public class AppleTree : MonoBehaviour
             speed = -Mathf.Abs(speed);
         }
     }
-    public void InstantiateAppleDrop()
+
+    private void ChangeTreeDirectionRandomly()
     {
-        Instantiate(applePrefab, pos, Quaternion.identity);
+        if (Random.value < chanceToChangeDirections)
+        {
+            speed *= -1;
+        }
     }
 }
