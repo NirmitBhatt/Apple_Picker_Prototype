@@ -11,12 +11,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private float basketSpacingY = 0.5f;
     private int numberOfBaskets = 3;
     List<GameObject> basketList;
-    //public TextMeshProUGUI scxoreText;
 
-    void Start()
+    private void Awake()
     {
         basketList = new List<GameObject>();
         SpawnBasketForPlayer();
+    }
+    void Start()
+    {
         FindObjectOfType<Death>().OnAppleDropped += EliminateBasket;
         FindObjectOfType<Death>().OnAppleDropped += DestroyAllApplesOnScreen;
 

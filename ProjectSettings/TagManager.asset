@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Apple
   - Basket
+  - UIController
   layers:
   - Default
   - TransparentFX

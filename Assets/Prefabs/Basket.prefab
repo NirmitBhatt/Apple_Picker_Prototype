@@ -145,3 +145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftScreenEdgeForBasket: -9.54
   rightScreenEdgeForBasket: 9.54
+  AppleCollect:
+    m_PersistentCalls:
+      m_Calls: []

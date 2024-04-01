@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class BasketController : MonoBehaviour
 {
     [SerializeField] private float leftScreenEdgeForBasket = -10.1f;
     [SerializeField] private float rightScreenEdgeForBasket = 10.1f;
+    public UnityEvent AppleCollect;
     private float clampedMouseXPos3D;
-    private static int score = 0;
+    public int score { get; private set; }
+
     // Update is called once per frame
+    void Start()
+    {
+        score = 0;
+        AppleCollect.AddListener(GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>().UpdateScoreOnUI);
+    }
 
 
     void Update()
@@ -33,6 +43,7 @@ public class BasketController : MonoBehaviour
             Destroy(collision.gameObject);
             score += 10;
             Debug.Log(score);
+            AppleCollect.Invoke();
         }
     }
 }
