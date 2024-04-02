@@ -11,13 +11,13 @@ public class BasketController : MonoBehaviour
     [SerializeField] private float rightScreenEdgeForBasket = 10.1f;
     public UnityEvent AppleCollect;
     private float clampedMouseXPos3D;
-    public int score { get; private set; }
+    public static int score { get; private set; }
 
     // Update is called once per frame
     void Start()
     {
         score = 0;
-        AppleCollect.AddListener(GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>().UpdateScoreOnUI);
+        AppleCollect.AddListener(GameObject.FindGameObjectWithTag("UIScoreController").GetComponent<UIScoreController>().UpdateScoreOnUI);
     }
 
 

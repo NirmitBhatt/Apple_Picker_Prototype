@@ -2341,7 +2341,7 @@ GameObject:
   - component: {fileID: 1471719292}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: UIController
+  m_TagString: UIScoreController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1471719287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be069025886e61e40a222a5294f81d47, type: 3}
+  m_Script: {fileID: 11500000, guid: 791ac250ded4ee74da2e8f2a430d08a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1969602058}
@@ -3191,7 +3191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 27f89240d8eb66a4d88c2da938308113, type: 2}
   m_sharedMaterial: {fileID: 828056581432427314, guid: 27f89240d8eb66a4d88c2da938308113, type: 2}
