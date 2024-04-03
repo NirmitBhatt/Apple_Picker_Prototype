@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject basketPrefab;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
+    [SerializeField] GameObject gameOverPanel;  
     private int numberOfBaskets = 3;
     List<GameObject> basketList;
 
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
     {
         basketList = new List<GameObject>();
         SpawnBasketForPlayer();
+        gameOverPanel.SetActive(false);
     }
     void Start()
     {
@@ -44,7 +46,8 @@ public class GameController : MonoBehaviour
         Destroy(tBasketGO);
         if (basketList.Count == 0)
         {
-            Debug.Log("Game Over");
+            Time.timeScale = 0f;
+            gameOverPanel.SetActive(true);
             FindObjectOfType<Death>().OnAppleDropped -= EliminateBasket;
             FindObjectOfType<Death>().OnAppleDropped -= DestroyAllApplesOnScreen;
         }
