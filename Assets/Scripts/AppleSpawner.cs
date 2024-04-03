@@ -19,6 +19,7 @@ public class AppleSpawner : MonoBehaviour
         AssignSpawnPosition();
     }
 
+
     private void AssignSpawnPosition()
     {
         pos = transform.position;
