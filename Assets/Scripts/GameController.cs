@@ -26,23 +26,11 @@ public class GameController : MonoBehaviour
 
     }
 
-    private void SpawnBasketForPlayer()
-    {
-        Vector3 pos = Vector3.zero;
-        pos.y = spawnPositionForBasket;
-        for (int i = 0; i < numberOfBaskets; i++)
-        {
-            GameObject tBasketGO = Instantiate(basketPrefab, pos, Quaternion.identity);
-            pos.y += basketSpacingY;
-            basketList.Add(tBasketGO);
-        }
-    }
-
     public void EliminateBasket()
     {
-        //int basketIndex = basketList.Count - 1;
         GameObject tBasketGO = basketList[0];
         basketList.RemoveAt(0);
+        FindObjectOfType<AudioManager>().PlayAudio("BasketBreak");
         Destroy(tBasketGO);
         if (basketList.Count == 0)
         {
@@ -62,4 +50,15 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void SpawnBasketForPlayer()
+    {
+        Vector3 pos = Vector3.zero;
+        pos.y = spawnPositionForBasket;
+        for (int i = 0; i < numberOfBaskets; i++)
+        {
+            GameObject tBasketGO = Instantiate(basketPrefab, pos, Quaternion.identity);
+            pos.y += basketSpacingY;
+            basketList.Add(tBasketGO);
+        }
+    }
 }

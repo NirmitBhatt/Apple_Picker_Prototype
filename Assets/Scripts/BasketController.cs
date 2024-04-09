@@ -44,6 +44,7 @@ public class BasketController : MonoBehaviour
             score += 10;
             Debug.Log(score);
             AppleCollect.Invoke();
+            FindObjectOfType<AudioManager>().PlayAudio("AppleCatch");
         }
     }
 }

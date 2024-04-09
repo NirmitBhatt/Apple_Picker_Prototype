@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class UIMenuController : MonoBehaviour
 {
-
-    
-
     public void LoadGame()
     {
         SceneManager.LoadScene("Game Scene");
