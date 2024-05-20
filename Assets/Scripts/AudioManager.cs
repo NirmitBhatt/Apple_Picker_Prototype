@@ -8,7 +8,6 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private Sounds[] sounds;
-
     public static AudioManager instance;
     private void Awake()
     {
@@ -29,7 +28,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void GetSingletonInstance()
+    public void GetSingletonInstance()
     {
         if (instance == null)
         {

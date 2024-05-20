@@ -409,81 +409,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &577610307
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 577610308}
-  - component: {fileID: 577610309}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &577610308
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577610307}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &577610309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 577610307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8891f84b2121df64bba53c8b63b809fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: AppleDrop
-    clip: {fileID: 8300000, guid: 52a10e5bb5271ea43b2f006105849cc9, type: 3}
-    source: {fileID: 0}
-    volume: 1
-    pitch: 0.8
-    loop: 0
-  - name: AppleSpawn
-    clip: {fileID: 8300000, guid: 954910cbe91708c4d8bf18a3497018f0, type: 3}
-    source: {fileID: 0}
-    volume: 1
-    pitch: 0.8
-    loop: 0
-  - name: BasketBreak
-    clip: {fileID: 8300000, guid: ef1c00ed011fc1c40a74ef943f32d851, type: 3}
-    source: {fileID: 0}
-    volume: 1
-    pitch: 0.8
-    loop: 0
-  - name: ButtonHover
-    clip: {fileID: 8300000, guid: f6870cff8367b454590b61b2a3524ce2, type: 3}
-    source: {fileID: 0}
-    volume: 1
-    pitch: 0.8
-    loop: 0
-  - name: AppleCatch
-    clip: {fileID: 8300000, guid: 67c6f9fe09812f044a92af4a1e8e3d15, type: 3}
-    source: {fileID: 0}
-    volume: 1
-    pitch: 0.8
-    loop: 0
 --- !u!1 &804342823
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -91.82}
+  m_AnchoredPosition: {x: 0, y: -91.75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001086686
@@ -1403,6 +1328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1424939566}
   - component: {fileID: 1424939565}
+  - component: {fileID: 1424939567}
   m_Layer: 0
   m_Name: Apple 1
   m_TagString: Untagged
@@ -1470,13 +1396,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424939564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.67, y: 1.91, z: 0}
+  m_LocalPosition: {x: -6.87, y: 1.91, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1424939567
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424939564}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ef1b727a8371d724c9b53be3b6fae052, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1762607314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1434,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762607316}
   - component: {fileID: 1762607315}
+  - component: {fileID: 1762607317}
   m_Layer: 0
   m_Name: Apple 2
   m_TagString: Untagged
@@ -1554,13 +1502,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762607314}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.21, y: 1.91, z: 0}
+  m_LocalPosition: {x: 6.41, y: 1.91, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1762607317
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762607314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 767abe8e999a5134dbc6797de81b3078, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1768795286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,7 +1565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -91.82}
+  m_AnchoredPosition: {x: 0, y: -91.75}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768795288
@@ -1747,3 +1716,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d032ea5e62fa4348a8b5c69a5c454b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4980013147042626447
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506036205880607082, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
