@@ -9,7 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject basketPrefab;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
-    [SerializeField] GameObject gameOverPanel;  
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] private ParticleSystem basketDestroyParticles = default;
     private int numberOfBaskets = 3;
     List<GameObject> basketList;
 
@@ -32,6 +33,8 @@ public class GameController : MonoBehaviour
         basketList.RemoveAt(0);
         FindObjectOfType<AudioManager>().PlayAudio("BasketBreak");
         Destroy(tBasketGO);
+        basketDestroyParticles.transform.position = tBasketGO.transform.position;
+        basketDestroyParticles.Play();
         if (basketList.Count == 0)
         {
             Time.timeScale = 0f;
