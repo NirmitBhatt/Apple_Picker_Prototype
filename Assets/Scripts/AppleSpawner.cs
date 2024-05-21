@@ -30,6 +30,6 @@ public class AppleSpawner : MonoBehaviour
     {
         Instantiate(applePrefab, pos, Quaternion.identity);
         FindObjectOfType<AudioManager>().PlayAudio("AppleSpawn");
-        FindObjectOfType<AudioManager>().PlayAudio("AppleDrop");
+        //FindObjectOfType<AudioManager>().PlayAudio("AppleDrop");
     }
 }

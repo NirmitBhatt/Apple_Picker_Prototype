@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using EZCameraShake;
 
 public class GameController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour
         basketList = new List<GameObject>();
         SpawnBasketForPlayer();
         gameOverPanel.SetActive(false);
+        FindObjectOfType<AudioManager>().PlayAudio("GameBackground");
     }
     void Start()
     {
@@ -33,11 +35,13 @@ public class GameController : MonoBehaviour
         basketList.RemoveAt(0);
         FindObjectOfType<AudioManager>().PlayAudio("BasketBreak");
         Destroy(tBasketGO);
+        CameraShaker.Instance.ShakeOnce(4f, 15f, .3f, 1f);
         basketDestroyParticles.transform.position = tBasketGO.transform.position;
         basketDestroyParticles.Play();
         if (basketList.Count == 0)
         {
             Time.timeScale = 0f;
+            FindObjectOfType<AudioManager>().StopAudio("GameBackground");
             gameOverPanel.SetActive(true);
             FindObjectOfType<Death>().OnAppleDropped -= EliminateBasket;
             FindObjectOfType<Death>().OnAppleDropped -= DestroyAllApplesOnScreen;
