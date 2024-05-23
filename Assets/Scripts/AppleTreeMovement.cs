@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AppleTreeMovement : MonoBehaviour
 {
     public float speed = 1f;
+    public float chanceToChangeDirections = 0.0001f;
     public float leftScreenEdge = -10f;
     public float rightScreenEdge = 10f;
-    public float chanceToChangeDirections = 0.0001f;
+    
     Vector3 pos;
     void Start()
     {

@@ -1724,6 +1724,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2062440097010037181, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: sounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062440097010037181, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: af0a90ba872346e42950710a473dbafd, type: 3}
+    - target: {fileID: 2062440097010037181, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: sounds.Array.data[5].loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062440097010037181, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: sounds.Array.data[5].name
+      value: GameBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062440097010037181, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: sounds.Array.data[5].pitch
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062440097010037181, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
+      propertyPath: sounds.Array.data[5].volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3828993820600340839, guid: cb2808831d36aa647bb7e800522e3e62, type: 3}
       propertyPath: m_RootOrder
       value: 7

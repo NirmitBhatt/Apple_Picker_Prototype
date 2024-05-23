@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Audio;
 using UnityEngine;
-using System.Runtime.CompilerServices;
 using System;
 
 public class AudioManager : MonoBehaviour
@@ -59,5 +55,18 @@ public class AudioManager : MonoBehaviour
     {
         Sounds s = Array.Find(sounds, sounds => sounds.name == name);
         s.source?.Stop();
+    }
+
+    public void SetPitch(string name, float pitch)
+    {
+        Sounds s = Array.Find(sounds, sounds => sounds.name == name);
+        if (s != null && s.source != null)
+        {
+            s.source.pitch = pitch;
+        }
+        else
+        {
+            Debug.LogWarning("Audio Source: " + name + " not found or has no audio source!");
+        }
     }
 }

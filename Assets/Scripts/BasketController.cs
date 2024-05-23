@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class BasketController : MonoBehaviour
 {
@@ -42,9 +38,10 @@ public class BasketController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             score += 10;
-            Debug.Log(score);
+            //Debug.Log(score);
             AppleCollect.Invoke();
             FindObjectOfType<AudioManager>().PlayAudio("AppleCatch");
+
         }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Basket
   - UIScoreController
   - PausePanelUI
+  - Apple Tree
   layers:
   - Default
   - TransparentFX
