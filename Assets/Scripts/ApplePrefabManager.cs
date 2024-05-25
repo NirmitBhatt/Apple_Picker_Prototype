@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ApplePrefabManager : MonoBehaviour
 {
-
     public float linearDrag;
     public float gravityScale;
     private Rigidbody2D rb;

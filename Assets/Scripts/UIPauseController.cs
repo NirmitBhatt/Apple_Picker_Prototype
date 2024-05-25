@@ -1,12 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UIPauseController : MonoBehaviour
 {
+    public static event Action OnPauseGame;
+    public static event Action OnResumeGame;
     [SerializeField] GameObject pausePanelUI;
     bool gameIsPaused = false;
+    private AudioManager audioManager;
     // Update is called once per frame
+
+    private void Awake()
+    {
+        audioManager = AudioManager.instance;
+    }
     void Update()
     {
         PressESCToPause();
@@ -20,10 +29,12 @@ public class UIPauseController : MonoBehaviour
             if (gameIsPaused)
             {
                 Resume();
+                OnResumeGame?.Invoke();
             }
             else
             {
                 Pause();
+                OnPauseGame?.Invoke();
             }
         }
     }
@@ -33,6 +44,7 @@ public class UIPauseController : MonoBehaviour
         pausePanelUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        audioManager.SetVolume("GameBackground", 0.25f);
     }
 
     private void Resume()
@@ -40,5 +52,6 @@ public class UIPauseController : MonoBehaviour
         pausePanelUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        audioManager.SetVolume("GameBackground", 0.8f);
     }
 }

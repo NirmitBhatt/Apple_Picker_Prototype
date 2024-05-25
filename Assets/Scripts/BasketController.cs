@@ -1,34 +1,56 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BasketController : MonoBehaviour
 {
-    [SerializeField] private float leftScreenEdgeForBasket = -10.1f;
-    [SerializeField] private float rightScreenEdgeForBasket = 10.1f;
-    public UnityEvent AppleCollect;
-    private float clampedMouseXPos3D;
-    public static int score { get; private set; }
+    public static event Action AppleCollect;
 
-    // Update is called once per frame
-    void Start()
+    [SerializeField] private float leftScreenEdgeForBasket = -5.2f;
+    [SerializeField] private float rightScreenEdgeForBasket = 15.2f;
+    private bool pauseCounter = false;
+    private float clampedMouseXPos3D;
+
+
+    private void OnEnable()
     {
-        score = 0;
-        AppleCollect.AddListener(GameObject.FindGameObjectWithTag("UIScoreController").GetComponent<UIScoreController>().UpdateScoreOnUI);
+        UIPauseController.OnPauseGame += PauseCounter;
+        UIPauseController.OnResumeGame += ResumeCounter;
     }
 
+    private void OnDisable()
+    {
+        UIPauseController.OnPauseGame -= PauseCounter;
+        UIPauseController.OnResumeGame -= ResumeCounter;
+    }
+    private void PauseCounter()
+    {
+        pauseCounter = true;
+    }
+
+    private void ResumeCounter()
+    {
+        pauseCounter = false;
+    }
 
     void Update()
     {
         MoveBasketWithMouseCursor();
-
     }
 
     private void MoveBasketWithMouseCursor()
     {
-        Vector3 mousePosd2D = Input.mousePosition;
-        Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePosd2D);
-        clampedMouseXPos3D = Mathf.Clamp(mousePos3D.x, leftScreenEdgeForBasket, rightScreenEdgeForBasket);
-        transform.position = new Vector3(clampedMouseXPos3D, transform.position.y, transform.position.z);
+        if (pauseCounter)
+        {
+            return;
+        }
+        else
+        {
+            Vector3 mousePosd2D = Input.mousePosition;
+            Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePosd2D);
+            clampedMouseXPos3D = Mathf.Clamp(mousePos3D.x, leftScreenEdgeForBasket, rightScreenEdgeForBasket);
+            transform.position = new Vector3(clampedMouseXPos3D, transform.position.y, transform.position.z);
+        }  
     }
 
 
@@ -37,11 +59,8 @@ public class BasketController : MonoBehaviour
         if (collision.gameObject.tag == "Apple")
         {
             Destroy(collision.gameObject);
-            score += 10;
-            //Debug.Log(score);
-            AppleCollect.Invoke();
+            AppleCollect?.Invoke();
             FindObjectOfType<AudioManager>().PlayAudio("AppleCatch");
-
         }
     }
 }

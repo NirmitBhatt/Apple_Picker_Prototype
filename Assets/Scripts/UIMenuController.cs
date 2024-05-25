@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,12 @@ public class UIMenuController : MonoBehaviour
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        if (Application.isPlaying)
+        {
+            EditorApplication.isPlaying = false;
+        }
+#endif
         Application.Quit();
     }
 
@@ -18,5 +25,6 @@ public class UIMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
         Time.timeScale = 1.0f;
+        FindObjectOfType<AudioManager>().StopAudio("GameBackground");
     }
 }

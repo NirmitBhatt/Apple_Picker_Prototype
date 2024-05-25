@@ -4,9 +4,19 @@ using UnityEngine;
 public class UIScoreController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText;
-    public void UpdateScoreOnUI()
+
+    private void OnEnable()
     {
-        //Debug.Log("From UIController");
-        scoreText.text = BasketController.score.ToString();
+        GameController.ScoreChanged += UpdateScoreOnUI;
+    }
+
+    private void OnDisable()
+    {
+        GameController.ScoreChanged -= UpdateScoreOnUI;
+    }
+
+    public void UpdateScoreOnUI(int score)
+    {
+        scoreText.SetText(score.ToString());
     }
 }

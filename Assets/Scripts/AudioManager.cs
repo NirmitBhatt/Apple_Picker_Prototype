@@ -69,4 +69,17 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Audio Source: " + name + " not found or has no audio source!");
         }
     }
+
+    public void SetVolume(string name, float volume)
+    {
+        Sounds s = Array.Find(sounds, sounds => sounds.name == name);
+        if (s != null && s.source != null)
+        {
+            s.source.volume = volume;
+        }
+        else
+        {
+            Debug.LogWarning("Audio Source: " + name + " not found or has no audio source!");
+        }
+    }
 }

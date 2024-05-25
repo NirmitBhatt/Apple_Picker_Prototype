@@ -4,7 +4,6 @@ public class LevelManager : MonoBehaviour
 {
     private AppleTreeMovement appleTreeMovement;
     private AppleSpawner appleSpawner;
-    //private ApplePrefabManager applePrefabManager;
     private AudioManager audioManager;
 
     private int currentLevel = 1;
@@ -14,7 +13,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         AssignComponentsForLevelChange();
-        
     }
 
     private void Update()

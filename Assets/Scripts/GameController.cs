@@ -1,20 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
+using System;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private GameObject basketPrefab;
+    public static event Action<int> ScoreChanged;
+    [SerializeField] private BasketController basketPrefab;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
     [SerializeField] GameObject gameOverPanel;
     [SerializeField] private ParticleSystem basketDestroyParticles = default;
     private int numberOfBaskets = 3;
-    List<GameObject> basketList;
+    List<BasketController> basketList;
+
+    public int Score 
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+            ScoreChanged?.Invoke(score);
+        }
+    }
+    private int score = 0;
 
     private void Awake()
     {
-        basketList = new List<GameObject>();
+        basketList = new List<BasketController>();
         SpawnBasketForPlayer();
         gameOverPanel.SetActive(false);
     }
@@ -28,6 +44,21 @@ public class GameController : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        BasketController.AppleCollect += IncrementScore;
+    }
+
+    private void OnDisable()
+    {
+        BasketController.AppleCollect -= IncrementScore;
+    }
+
+    private void IncrementScore()
+    {
+        Score = Score + 10;
+    }
+
     private void PlayBackgroundAudio()
     {
         FindObjectOfType<AudioManager>().PlayAudio("GameBackground");
@@ -35,13 +66,13 @@ public class GameController : MonoBehaviour
 
     public void EliminateBasket()
     {
-        GameObject tBasketGO = basketList[0];
+        BasketController basketController = basketList[0];
         basketList.RemoveAt(0);
         FindObjectOfType<AudioManager>().PlayAudio("BasketBreak");
         //FindObjectOfType<AudioManager>().PlayAudio("GameBackground");
-        Destroy(tBasketGO);
+        Destroy(basketController.gameObject);
         CameraShaker.Instance.ShakeOnce(4f, 15f, .3f, 1f);
-        basketDestroyParticles.transform.position = tBasketGO.transform.position;
+        basketDestroyParticles.transform.position = basketController.transform.position;
         basketDestroyParticles.Play();
         if (basketList.Count == 0)
         {
@@ -68,9 +99,9 @@ public class GameController : MonoBehaviour
         pos.y = spawnPositionForBasket;
         for (int i = 0; i < numberOfBaskets; i++)
         {
-            GameObject tBasketGO = Instantiate(basketPrefab, pos, Quaternion.identity);
+            BasketController basketController = Instantiate(basketPrefab, pos, Quaternion.identity);
             pos.y += basketSpacingY;
-            basketList.Add(tBasketGO);
+            basketList.Add(basketController);
         }
     }
 }
