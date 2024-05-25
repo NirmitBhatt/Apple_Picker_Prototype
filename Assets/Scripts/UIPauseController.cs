@@ -8,6 +8,7 @@ public class UIPauseController : MonoBehaviour
     public static event Action OnPauseGame;
     public static event Action OnResumeGame;
     [SerializeField] GameObject pausePanelUI;
+    private bool isGameOver = false;
     bool gameIsPaused = false;
     private AudioManager audioManager;
     // Update is called once per frame
@@ -21,10 +22,23 @@ public class UIPauseController : MonoBehaviour
         PressESCToPause();
     }
 
+    private void OnEnable()
+    {
+        GameController.OnGameOver += ChangeGameOverState;
+    }
+
+    private void OnDisable()
+    {
+        GameController.OnGameOver -= ChangeGameOverState;
+    }
+
     private void PressESCToPause()
     {
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isGameOver)
+        {
+            return;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
             {
@@ -37,6 +51,11 @@ public class UIPauseController : MonoBehaviour
                 OnPauseGame?.Invoke();
             }
         }
+    }
+
+    private void ChangeGameOverState()
+    {
+        isGameOver = true;
     }
 
     private void Pause()

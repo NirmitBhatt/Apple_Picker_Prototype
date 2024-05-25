@@ -6,6 +6,7 @@ using System;
 public class GameController : MonoBehaviour
 {
     public static event Action<int> ScoreChanged;
+    public static event Action OnGameOver;
     [SerializeField] private BasketController basketPrefab;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0f;
             FindObjectOfType<AudioManager>().StopAudio("GameBackground");
             gameOverPanel.SetActive(true);
+            OnGameOver?.Invoke();
             FindObjectOfType<Death>().OnAppleDropped -= EliminateBasket;
             FindObjectOfType<Death>().OnAppleDropped -= DestroyAllApplesOnScreen;
         }
