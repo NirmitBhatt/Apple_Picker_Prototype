@@ -35,9 +35,6 @@ public class AudioManager : MonoBehaviour
         GameController.OnBasketBreak -= PlayBasketBreakAudio;
         GameController.OnGameStart -= PlayGameBackgroundAudio;
         GameController.OnGameOver -= StopGameBackgroundAudio;
-
-
-
     }
 
     private void PlayAppleSpawnAudio()

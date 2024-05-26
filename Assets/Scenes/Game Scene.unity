@@ -8693,6 +8693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0f7d546835c394b875a9ddc5635798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 519420034}
   timeBetweenLevelChange: 10
 --- !u!4 &1536776664
 Transform:

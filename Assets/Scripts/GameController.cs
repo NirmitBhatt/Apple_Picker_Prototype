@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public static event Action OnGameStart;
     public static Action OnGameOver;
     public static event Action OnBasketBreak;
+    private int scoreIncrementRate;
     [SerializeField] private BasketController basketPrefab;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
@@ -16,6 +17,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private ParticleSystem basketDestroyParticles = default;
     private int numberOfBaskets = 3;
     List<BasketController> basketList;
+
+    public int ScoreIncrementRate
+    {
+        get
+        {
+            return scoreIncrementRate;
+        }
+        set
+        {
+            scoreIncrementRate = value;
+        }
+    }
 
     public int Score 
     {
@@ -59,7 +72,7 @@ public class GameController : MonoBehaviour
 
     private void IncrementScore()
     {
-        Score = Score + 2;
+        Score = Score + scoreIncrementRate;
     }
 
     public void EliminateBasket()
