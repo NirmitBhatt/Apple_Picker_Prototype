@@ -1446,6 +1446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basketPrefab: {fileID: 7635942935973128084, guid: 7bf296c43dd3bee4c871bb9c74ee36f1, type: 3}
+  death: {fileID: 4825017361795629382}
   spawnPositionForBasket: -4.75
   basketSpacingY: 0.7
   gameOverPanel: {fileID: 751362659}
@@ -8695,6 +8696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 519420034}
   timeBetweenLevelChange: 10
+  level: 1
 --- !u!4 &1536776664
 Transform:
   m_ObjectHideFlags: 0
@@ -10268,3 +10270,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe1259536cfe81f409f2b87883f8b98a, type: 3}
+--- !u!114 &4825017361795629382 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3921952717423310245, guid: fe1259536cfe81f409f2b87883f8b98a, type: 3}
+  m_PrefabInstance: {fileID: 4825017361795629381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c0f32e4c4381704d8b963a17d38a3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

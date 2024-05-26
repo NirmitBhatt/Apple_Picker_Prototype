@@ -4,8 +4,9 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public const string GAME_BACKGROUND_AUDIO = "GameBackground";
+
     private const string APPLE_SPAWN_AUDIO = "AppleSpawn";
-    private const string GAME_BACKGROUND_AUDIO = "GameBackground";
     private const string BASKET_BREAK_AUDIO = "BasketBreak";
     private const string APPLE_CATCH_AUDIO = "AppleCatch";
 

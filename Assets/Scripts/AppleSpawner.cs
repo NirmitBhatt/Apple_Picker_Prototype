@@ -4,11 +4,12 @@ using UnityEngine;
 public class AppleSpawner : MonoBehaviour
 {
     public static event Action AppleSpawned;
+    private const float APPLE_SPAWN_YPOS = 2.2f;
 
     public GameObject applePrefab;
     public float secsBetweenAppleDrop = 1f;
-    Vector3 pos;
 
+    private Vector3 pos;
     private float appleLinearDrag;
     private float appleGravityScale;
     private float currentTime = 0;
@@ -32,13 +33,10 @@ public class AppleSpawner : MonoBehaviour
     private void AssignSpawnPosition()
     {
         pos = transform.position;
-        pos.y = 2.2f;
+        pos.y = APPLE_SPAWN_YPOS;
     }
 
-    public void SetSecsBetweenAppleDrop(float newSecsBetweenAppleDrop)
-    {
-        secsBetweenAppleDrop = newSecsBetweenAppleDrop;
-    }
+    public void SetSecsBetweenAppleDrop(float newSecsBetweenAppleDrop) => secsBetweenAppleDrop = newSecsBetweenAppleDrop;
 
     public void SetAppleRigidbodyValues(float linearDrag, float gravityScale)
     {

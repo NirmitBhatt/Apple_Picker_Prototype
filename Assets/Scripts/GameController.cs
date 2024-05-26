@@ -7,16 +7,20 @@ public class GameController : MonoBehaviour
 {
     public static event Action<int> ScoreChanged;
     public static event Action OnGameStart;
-    public static Action OnGameOver;
     public static event Action OnBasketBreak;
+
+    public static Action OnGameOver;
+
     private int scoreIncrementRate;
+    private int numberOfBaskets = 3;
+    private List<BasketController> basketList;
+
     [SerializeField] private BasketController basketPrefab;
+    [SerializeField] private Death death;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
-    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private ParticleSystem basketDestroyParticles = default;
-    private int numberOfBaskets = 3;
-    List<BasketController> basketList;
 
     public int ScoreIncrementRate
     {
@@ -50,29 +54,25 @@ public class GameController : MonoBehaviour
         SpawnBasketForPlayer();
         gameOverPanel.SetActive(false);
     }
-    void Start()
-    {
-        //FindObjectOfType<AudioManager>().PlayAudio("GameBackground");
-        
-        FindObjectOfType<Death>().OnAppleDropped += EliminateBasket;
-        FindObjectOfType<Death>().OnAppleDropped += DestroyAllApplesOnScreen;
-        OnGameStart?.Invoke();
-
-    }
 
     private void OnEnable()
     {
         BasketController.AppleCollect += IncrementScore;
+        death.OnAppleDropped += EliminateBasket;
+        death.OnAppleDropped += DestroyAllApplesOnScreen;
+        OnGameStart?.Invoke();
     }
 
     private void OnDisable()
     {
         BasketController.AppleCollect -= IncrementScore;
+        death.OnAppleDropped -= EliminateBasket;
+        death.OnAppleDropped -= DestroyAllApplesOnScreen;
     }
 
     private void IncrementScore()
     {
-        Score = Score + scoreIncrementRate;
+        Score += scoreIncrementRate;
     }
 
     public void EliminateBasket()
@@ -88,8 +88,6 @@ public class GameController : MonoBehaviour
             Time.timeScale = 0f;
             gameOverPanel.SetActive(true);
             OnGameOver?.Invoke();
-            FindObjectOfType<Death>().OnAppleDropped -= EliminateBasket;
-            FindObjectOfType<Death>().OnAppleDropped -= DestroyAllApplesOnScreen;
         }
     }
 

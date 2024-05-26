@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -8,11 +7,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float timeBetweenLevelChange = 8f;
     [SerializeField] private int level = 1;
 
-
     private AppleTreeMovement appleTreeMovement;
     private AppleSpawner appleSpawner;
     private AudioManager audioManager;
-    
     private int currentLevel = 1;
     private float levelTimer = 0;
 
@@ -51,12 +48,6 @@ public class LevelManager : MonoBehaviour
             appleSpawner = appleTree.GetComponent<AppleSpawner>();
             audioManager = AudioManager.instance;
 
-            if (appleTreeMovement == null && appleSpawner == null && audioManager == null && gameController == null)
-            {
-                Debug.LogError("Component and/or object type not assigned!");
-                return;
-            }
-
             ChangeLevel(1);
         }
         else
@@ -70,77 +61,23 @@ public class LevelManager : MonoBehaviour
         this.level = level;
         LevelConfigData configData = levelConfigMap[level];
         SetLevelData(configData);
-
-        //return;
-        //switch (level)
-        //{
-        //    case 1:
-        //        appleTreeMovement.speed = 7f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.01f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.8f);
-        //        appleSpawner.SetAppleRigidbodyValues(1.2f, 0.8f);
-        //        audioManager.SetPitch("GameBackground", 0.7f);
-        //        break;
-
-        //    case 2:
-        //        appleTreeMovement.speed = 10f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.01f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.6f);
-        //        appleSpawner.SetAppleRigidbodyValues(1.1f, 0.8f);
-        //        audioManager.SetPitch("GameBackground", 0.7f);
-        //        break;
-
-        //    case 3:
-        //        appleTreeMovement.speed = 15f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.02f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.4f);
-        //        appleSpawner.SetAppleRigidbodyValues(1f, 1f);
-        //        audioManager.SetPitch("GameBackground", 0.8f);
-        //        break;
-
-        //    case 4:
-        //        appleTreeMovement.speed = 18f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.02f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.3f); 
-        //        appleSpawner.SetAppleRigidbodyValues(1f, 1.2f);
-        //        audioManager.SetPitch("GameBackground", 0.8f);
-        //        break;
-
-        //    case 5:
-        //        appleTreeMovement.speed = 25f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.03f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.2f);
-        //        appleSpawner.SetAppleRigidbodyValues(0.8f, 1.5f);
-        //        audioManager.SetPitch("GameBackground", 1f);
-        //        break;
-
-        //    case 6:
-        //        appleTreeMovement.speed = 32f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.03f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.1f);
-        //        appleSpawner.SetAppleRigidbodyValues(0.6f, 2f);
-        //        audioManager.SetPitch("GameBackground", 1f);
-        //        break;
-
-        //    default:
-        //        appleTreeMovement.speed = 10f;
-        //        appleTreeMovement.chanceToChangeDirections = 0.01f;
-        //        appleSpawner.SetSecsBetweenAppleDrop(0.6f);
-        //        appleSpawner.SetAppleRigidbodyValues(1.2f, 0.8f);
-        //        audioManager.SetPitch("GameBackground", 0.7f);
-        //        Debug.Log("Default case.");
-        //        break;
-        //}
     }
 
     private void SetLevelData(LevelConfigData levelConfigData)
     {
-        gameController.ScoreIncrementRate = levelConfigData.ScoreIncrementRate;
-        appleTreeMovement.speed = levelConfigData.Speed;
-        appleTreeMovement.chanceToChangeDirections = levelConfigData.ChanceToChangeDirections;
-        appleSpawner.SetSecsBetweenAppleDrop(levelConfigData.SecsBetweenAppleDrop);
-        appleSpawner.SetAppleRigidbodyValues(levelConfigData.LinearDrag, levelConfigData.GravítyScale);
-        audioManager.SetPitch("GameBackground", levelConfigData.AudioPitch);
+        if(gameController != null)
+        {
+            gameController.ScoreIncrementRate = levelConfigData.ScoreIncrementRate;
+        }
+        if(appleTreeMovement != null)
+        {
+            appleTreeMovement.speed = levelConfigData.Speed;
+            appleTreeMovement.chanceToChangeDirections = levelConfigData.ChanceToChangeDirections;
+        }
+        
+        appleSpawner?.SetSecsBetweenAppleDrop(levelConfigData.SecsBetweenAppleDrop);
+        appleSpawner?.SetAppleRigidbodyValues(levelConfigData.LinearDrag, levelConfigData.GravítyScale);
+        audioManager?.SetPitch(AudioManager.GAME_BACKGROUND_AUDIO, levelConfigData.AudioPitch);
     }
 
     private class LevelConfigData

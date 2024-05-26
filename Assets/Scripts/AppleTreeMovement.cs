@@ -7,7 +7,8 @@ public class AppleTreeMovement : MonoBehaviour
     public float leftScreenEdge = -10f;
     public float rightScreenEdge = 10f;
     
-    Vector3 pos;
+    private Vector3 pos;
+
     void Start()
     {
         pos = transform.position;
@@ -21,10 +22,8 @@ public class AppleTreeMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ChangeTreeDirectionRandomly();
-        
+        ChangeTreeDirectionRandomly();   
     }
-
 
     private void MoveAppleTree()
     {
@@ -32,15 +31,16 @@ public class AppleTreeMovement : MonoBehaviour
         transform.position = pos;
         ChangeTreeDirection();
     }
+
     private void ChangeTreeDirection()
     {
         if (pos.x < leftScreenEdge)
         {
-            speed = Mathf.Abs(speed);
+            speed = speed > 0 ? speed : -speed;
         }
         else if (pos.x > rightScreenEdge)
         {
-            speed = -Mathf.Abs(speed);
+            speed = speed > 0 ? -speed : speed;
         }
     }
 

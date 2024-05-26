@@ -1,22 +1,22 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIPauseController : MonoBehaviour
 {
+    [SerializeField] private GameObject pausePanelUI;
+
     public static event Action OnPauseGame;
     public static event Action OnResumeGame;
-    [SerializeField] GameObject pausePanelUI;
-    private bool isGameOver = false;
-    bool gameIsPaused = false;
-    private AudioManager audioManager;
-    // Update is called once per frame
 
-    private void Awake()
+    private bool isGameOver = false;
+    private bool gameIsPaused = false;
+    private AudioManager audioManager;
+
+    private void Start()
     {
         audioManager = AudioManager.instance;
     }
+
     void Update()
     {
         PressESCToPause();
@@ -38,7 +38,8 @@ public class UIPauseController : MonoBehaviour
         {
             return;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
             {
@@ -53,17 +54,14 @@ public class UIPauseController : MonoBehaviour
         }
     }
 
-    private void ChangeGameOverState()
-    {
-        isGameOver = true;
-    }
+    private void ChangeGameOverState() => isGameOver = true;
 
     private void Pause()
     {
         pausePanelUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
-        audioManager.SetVolume("GameBackground", 0.25f);
+        audioManager.SetVolume(AudioManager.GAME_BACKGROUND_AUDIO, 0.25f);
     }
 
     private void Resume()
@@ -71,6 +69,6 @@ public class UIPauseController : MonoBehaviour
         pausePanelUI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
-        audioManager.SetVolume("GameBackground", 0.8f);
+        audioManager.SetVolume(AudioManager.GAME_BACKGROUND_AUDIO, 0.8f);
     }
 }
