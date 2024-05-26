@@ -5,7 +5,7 @@
 
  ***
 
-###Game Screenshots:
+### Game Screenshots:
 
  Game Title Screen:
 
