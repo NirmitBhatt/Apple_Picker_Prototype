@@ -3,8 +3,14 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private Sounds[] sounds;
     public static AudioManager instance;
+    private const string APPLE_SPAWN_AUDIO = "AppleSpawn";
+    private const string GAME_BACKGROUND_AUDIO = "GameBackground";
+    private const string BASKET_BREAK_AUDIO = "BasketBreak";
+    private const string APPLE_CATCH_AUDIO = "AppleCatch";
+
+    [SerializeField] private Sounds[] sounds;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -12,15 +18,62 @@ public class AudioManager : MonoBehaviour
         GetAudioSourceArray();
     }
 
+    private void OnEnable()
+    {
+        AppleSpawner.AppleSpawned += PlayAppleSpawnAudio;
+        BasketController.AppleCollect += PlayAppleCatchAudio;
+        GameController.OnBasketBreak += PlayBasketBreakAudio;
+        GameController.OnGameStart += PlayGameBackgroundAudio;
+        GameController.OnGameOver += StopGameBackgroundAudio;
+    }
+
+    
+    private void OnDisable()
+    {
+        AppleSpawner.AppleSpawned -= PlayAppleSpawnAudio;
+        BasketController.AppleCollect -= PlayAppleCatchAudio;
+        GameController.OnBasketBreak -= PlayBasketBreakAudio;
+        GameController.OnGameStart -= PlayGameBackgroundAudio;
+        GameController.OnGameOver -= StopGameBackgroundAudio;
+
+
+
+    }
+
+    private void PlayAppleSpawnAudio()
+    {
+        PlayAudio(APPLE_SPAWN_AUDIO);
+    }
+
+    private void PlayBasketBreakAudio()
+    {
+        PlayAudio(BASKET_BREAK_AUDIO);
+    }
+
+    private void PlayGameBackgroundAudio()
+    {
+        PlayAudio(GAME_BACKGROUND_AUDIO);
+    }
+
+    private void PlayAppleCatchAudio()
+    {
+        PlayAudio(APPLE_CATCH_AUDIO);
+    }
+
+    private void StopGameBackgroundAudio()
+    {
+        StopAudio(GAME_BACKGROUND_AUDIO);
+    }
+
     private void GetAudioSourceArray()
     {
-        foreach (Sounds s in sounds)
+        foreach (Sounds sound in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = sound.clip;
+            sound.source.volume = sound.volume;
+            sound.source.pitch = sound.pitch;
+            sound.source.loop = sound.loop;
         }
     }
 

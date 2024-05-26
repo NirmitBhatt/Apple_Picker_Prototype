@@ -6,7 +6,9 @@ using System;
 public class GameController : MonoBehaviour
 {
     public static event Action<int> ScoreChanged;
-    public static event Action OnGameOver;
+    public static event Action OnGameStart;
+    public static Action OnGameOver;
+    public static event Action OnBasketBreak;
     [SerializeField] private BasketController basketPrefab;
     [SerializeField] private float spawnPositionForBasket = -4.75f;
     [SerializeField] private float basketSpacingY = 0.5f;
@@ -41,7 +43,7 @@ public class GameController : MonoBehaviour
         
         FindObjectOfType<Death>().OnAppleDropped += EliminateBasket;
         FindObjectOfType<Death>().OnAppleDropped += DestroyAllApplesOnScreen;
-        PlayBackgroundAudio();
+        OnGameStart?.Invoke();
 
     }
 
@@ -57,33 +59,31 @@ public class GameController : MonoBehaviour
 
     private void IncrementScore()
     {
-        Score = Score + 10;
-    }
-
-    private void PlayBackgroundAudio()
-    {
-        FindObjectOfType<AudioManager>().PlayAudio("GameBackground");
+        Score = Score + 2;
     }
 
     public void EliminateBasket()
     {
         BasketController basketController = basketList[0];
         basketList.RemoveAt(0);
-        FindObjectOfType<AudioManager>().PlayAudio("BasketBreak");
-        //FindObjectOfType<AudioManager>().PlayAudio("GameBackground");
+        OnBasketBreak?.Invoke();
         Destroy(basketController.gameObject);
         CameraShaker.Instance.ShakeOnce(4f, 15f, .3f, 1f);
-        basketDestroyParticles.transform.position = basketController.transform.position;
-        basketDestroyParticles.Play();
+        SpawnBasketBreakParticles(basketController);  
         if (basketList.Count == 0)
         {
             Time.timeScale = 0f;
-            FindObjectOfType<AudioManager>().StopAudio("GameBackground");
             gameOverPanel.SetActive(true);
             OnGameOver?.Invoke();
             FindObjectOfType<Death>().OnAppleDropped -= EliminateBasket;
             FindObjectOfType<Death>().OnAppleDropped -= DestroyAllApplesOnScreen;
         }
+    }
+
+    private void SpawnBasketBreakParticles(BasketController basketController)
+    {
+        basketDestroyParticles.transform.position = basketController.transform.position;
+        basketDestroyParticles.Play();
     }
 
     public void DestroyAllApplesOnScreen()

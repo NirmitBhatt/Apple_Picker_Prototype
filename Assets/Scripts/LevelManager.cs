@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     private AudioManager audioManager;
 
     private int currentLevel = 1;
-    [SerializeField] private float timeBetweenLevelChange = 5f;
+    [SerializeField] private float timeBetweenLevelChange = 8f;
     private float levelTimer = 0;
 
     private void Start()
@@ -33,7 +33,6 @@ public class LevelManager : MonoBehaviour
         {
             appleTreeMovement = appleTree.GetComponent<AppleTreeMovement>();
             appleSpawner = appleTree.GetComponent<AppleSpawner>();
-            //applePrefabManager = FindObjectOfType<ApplePrefabManager>();
             audioManager = AudioManager.instance;
 
             if (appleTreeMovement == null && appleSpawner == null && audioManager == null)
@@ -55,11 +54,10 @@ public class LevelManager : MonoBehaviour
         switch (level)
         {
             case 1:
-                appleTreeMovement.speed = 8f;
+                appleTreeMovement.speed = 7f;
                 appleTreeMovement.chanceToChangeDirections = 0.01f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.8f);
                 appleSpawner.SetAppleRigidbodyValues(1.2f, 0.8f);
-                //applePrefabManager.UpdateRigidbodyValues(1.2f, 0.8f);
                 audioManager.SetPitch("GameBackground", 0.7f);
                 break;
 
@@ -67,8 +65,7 @@ public class LevelManager : MonoBehaviour
                 appleTreeMovement.speed = 10f;
                 appleTreeMovement.chanceToChangeDirections = 0.01f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.6f);
-                appleSpawner.SetAppleRigidbodyValues(1.2f, 0.8f);
-                //applePrefabManager.UpdateRigidbodyValues(1.2f, 0.8f);
+                appleSpawner.SetAppleRigidbodyValues(1.1f, 0.8f);
                 audioManager.SetPitch("GameBackground", 0.7f);
                 break;
 
@@ -77,16 +74,14 @@ public class LevelManager : MonoBehaviour
                 appleTreeMovement.chanceToChangeDirections = 0.02f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.4f);
                 appleSpawner.SetAppleRigidbodyValues(1f, 1f);
-                //applePrefabManager.UpdateRigidbodyValues(1f, 1f);
                 audioManager.SetPitch("GameBackground", 0.8f);
                 break;
 
             case 4:
-                appleTreeMovement.speed = 17f;
+                appleTreeMovement.speed = 18f;
                 appleTreeMovement.chanceToChangeDirections = 0.02f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.3f); 
-                appleSpawner.SetAppleRigidbodyValues(1f, 1f);
-                //applePrefabManager.UpdateRigidbodyValues(1f, 1f);
+                appleSpawner.SetAppleRigidbodyValues(1f, 1.2f);
                 audioManager.SetPitch("GameBackground", 0.8f);
                 break;
 
@@ -94,8 +89,7 @@ public class LevelManager : MonoBehaviour
                 appleTreeMovement.speed = 25f;
                 appleTreeMovement.chanceToChangeDirections = 0.03f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.2f);
-                appleSpawner.SetAppleRigidbodyValues(1f, 1.5f);
-                //applePrefabManager.UpdateRigidbodyValues(1f, 1.5f);
+                appleSpawner.SetAppleRigidbodyValues(0.8f, 1.5f);
                 audioManager.SetPitch("GameBackground", 1f);
                 break;
 
@@ -104,7 +98,6 @@ public class LevelManager : MonoBehaviour
                 appleTreeMovement.chanceToChangeDirections = 0.03f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.1f);
                 appleSpawner.SetAppleRigidbodyValues(0.6f, 2f);
-                //applePrefabManager.UpdateRigidbodyValues(0.8f, 2f);
                 audioManager.SetPitch("GameBackground", 1f);
                 break;
 
@@ -113,7 +106,6 @@ public class LevelManager : MonoBehaviour
                 appleTreeMovement.chanceToChangeDirections = 0.01f;
                 appleSpawner.SetSecsBetweenAppleDrop(0.6f);
                 appleSpawner.SetAppleRigidbodyValues(1.2f, 0.8f);
-                //applePrefabManager.UpdateRigidbodyValues(1.2f, 0.8f);
                 audioManager.SetPitch("GameBackground", 0.7f);
                 Debug.Log("Default case.");
                 break;

@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class AppleSpawner : MonoBehaviour
 {
+    public static event Action AppleSpawned;
+
     public GameObject applePrefab;
     public float secsBetweenAppleDrop = 1f;
     Vector3 pos;
@@ -53,6 +56,6 @@ public class AppleSpawner : MonoBehaviour
             applePrefabManager.gravityScale = appleGravityScale;
             applePrefabManager.ApplyRigidbodyValues();
         }
-        FindObjectOfType<AudioManager>().PlayAudio("AppleSpawn");
+        AppleSpawned?.Invoke();
     }
 }

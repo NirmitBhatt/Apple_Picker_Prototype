@@ -6,8 +6,8 @@ public class BasketController : MonoBehaviour
 {
     public static event Action AppleCollect;
 
-    [SerializeField] private float leftScreenEdgeForBasket = -5.2f;
-    [SerializeField] private float rightScreenEdgeForBasket = 15.2f;
+    [SerializeField] private float leftScreenEdgeForBasket = -7.9f;
+    [SerializeField] private float rightScreenEdgeForBasket = 7.9f;
     private bool pauseCounter = false;
     private float clampedMouseXPos3D;
 
@@ -59,7 +59,6 @@ public class BasketController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             AppleCollect?.Invoke();
-            FindObjectOfType<AudioManager>().PlayAudio("AppleCatch");
         }
     }
 }

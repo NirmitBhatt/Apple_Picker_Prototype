@@ -25,6 +25,6 @@ public class UIMenuController : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
         Time.timeScale = 1.0f;
-        FindObjectOfType<AudioManager>().StopAudio("GameBackground");
+        GameController.OnGameOver?.Invoke();
     }
 }
